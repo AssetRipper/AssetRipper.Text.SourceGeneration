@@ -4,6 +4,7 @@ public readonly ref struct CurlyBrackets
 {
 	private readonly IndentedTextWriter writer;
 
+	[Obsolete("Use CurlyBrackets(IndentedTextWriter) instead.", true)]
 	public CurlyBrackets() => throw new NotSupportedException();
 
 	public CurlyBrackets(IndentedTextWriter writer)

@@ -4,6 +4,7 @@ public readonly ref struct IndentedBlock
 {
 	private readonly IndentedTextWriter writer;
 
+	[Obsolete("Use IndentedBlock(IndentedTextWriter) instead")]
 	public IndentedBlock() => throw new NotSupportedException();
 
 	public IndentedBlock(IndentedTextWriter writer)
