@@ -2,18 +2,19 @@
 
 public readonly ref struct CurlyBracketsWithSemicolon
 {
-	private readonly IndentedTextWriter writer;
+	private readonly Indented indented;
+
+	public IndentedTextWriter Writer => indented.Writer;
 
 	public CurlyBracketsWithSemicolon(IndentedTextWriter writer)
 	{
-		this.writer = writer;
-		writer.WriteLine("{");
-		writer.Indent++;
+		writer.WriteLine('{');
+		indented = new Indented(writer);
 	}
 
 	public void Dispose()
 	{
-		writer.Indent--;
-		writer.WriteLine("};");
+		indented.Dispose();
+		Writer.WriteLine("};");
 	}
 }

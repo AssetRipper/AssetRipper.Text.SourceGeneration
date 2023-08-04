@@ -2,7 +2,9 @@
 
 public readonly ref struct Namespace
 {
-	private readonly CurlyBrackets curlyBrackets;
+	internal readonly CurlyBrackets curlyBrackets;
+
+	public IndentedTextWriter Writer => curlyBrackets.Writer;
 
 	public Namespace(IndentedTextWriter writer, string @namespace)
 	{
