@@ -8,6 +8,7 @@ public static class IndentedTextWriterExtensions
 	/// <param name="writer"></param>
 	public static void WriteGeneratedCodeWarning(this IndentedTextWriter writer) => writer.WriteComment("Auto-generated code. Do not modify manually.");
 	public static void WriteUsing(this IndentedTextWriter writer, string @namespace) => writer.WriteLine($"using {@namespace};");
+	public static void WriteGlobalUsing(this IndentedTextWriter writer, string @namespace) => writer.WriteLine($"global using {@namespace};");
 	public static void WriteFileScopedNamespace(this IndentedTextWriter writer, string @namespace) => writer.WriteLine($"namespace {@namespace};");
 	public static void WriteLineNoTabs(this IndentedTextWriter writer) => writer.WriteLineNoTabs(null);
 	public static void WriteComment(this IndentedTextWriter writer, string comment) => writer.WriteLine($"// {comment}");
