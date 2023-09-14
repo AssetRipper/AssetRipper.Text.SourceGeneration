@@ -25,7 +25,26 @@ public static class IndentedTextWriterExtensions
 	private static void WriteXmlDocumentation(this IndentedTextWriter writer, string tag, string content)
 	{
 		writer.WriteLine($"/// <{tag}>");
-		writer.WriteLine($"/// {content}");
+		if (content.Contains('\n') || content.Contains('\r'))
+		{
+			string[] lines = content.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+			for (int i = 0; ; i++)
+			{
+				if (i == lines.Length - 1)
+				{
+					writer.WriteLine($"/// {lines[i]}");
+					break;
+				}
+				else
+				{
+					writer.WriteLine($"/// {lines[i]}<br />");
+				}
+			}
+		}
+		else
+		{
+			writer.WriteLine($"/// {content}");
+		}
 		writer.WriteLine($"/// </{tag}>");
 	}
 }
