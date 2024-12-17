@@ -27,7 +27,7 @@ public static class IndentedTextWriterExtensions
 		writer.WriteLine($"/// <{tag}>");
 		if (content.Contains('\n') || content.Contains('\r'))
 		{
-			string[] lines = content.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+			string[] lines = content.Split(NewLineSeparators, StringSplitOptions.None);
 			for (int i = 0; ; i++)
 			{
 				if (i == lines.Length - 1)
@@ -47,4 +47,6 @@ public static class IndentedTextWriterExtensions
 		}
 		writer.WriteLine($"/// </{tag}>");
 	}
+
+	private static readonly string[] NewLineSeparators = ["\r\n", "\r", "\n"];
 }
