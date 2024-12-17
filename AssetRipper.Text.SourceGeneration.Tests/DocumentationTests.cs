@@ -1,5 +1,4 @@
 using System.CodeDom.Compiler;
-using System.Reflection;
 
 namespace AssetRipper.Text.SourceGeneration.Tests;
 
@@ -65,8 +64,10 @@ public class DocumentationTests
 		{
 			NewLine = "\n",
 		};
-		typeof(IndentedTextWriter).GetField("_tabsPending", BindingFlags.NonPublic | BindingFlags.Instance)!.SetValue(indentedWriter, true);
+#if !NET8_0_OR_GREATER
+		typeof(IndentedTextWriter).GetField("_tabsPending", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!.SetValue(indentedWriter, true);
 		//https://github.com/dotnet/runtime/issues/92039
+#endif
 		writeAction(indentedWriter);
 		Assert.That(writer.ToString(), Is.EqualTo(expectedOutput));
 	}
