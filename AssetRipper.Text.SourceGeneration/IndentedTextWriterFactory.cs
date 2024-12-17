@@ -16,12 +16,35 @@ public static class IndentedTextWriterFactory
 		string path = Path.Combine(directoryPath, $"{fileName}.g.cs");
 		Directory.CreateDirectory(directoryPath);
 		FileStream stream = File.Create(path);
-		StreamWriter streamWriter = new StreamWriter(stream, leaveOpen: false)
+		return Create(stream);
+	}
+
+	/// <summary>
+	/// Make a new <see cref="IndentedTextWriter"/>.
+	/// </summary>
+	/// <remarks>
+	/// This writer uses <see cref="StreamWriter.AutoFlush"/>, LF line endings, and tab indentation.
+	/// </remarks>
+	/// <param name="stream">The stream to write to.</param>
+	/// <returns>An <see cref="IndentedTextWriter"/> for the specified <paramref name="stream"/>.</returns>
+	public static IndentedTextWriter Create(Stream stream)
+	{
+		StreamWriter streamWriter = new StreamWriter(stream)
 		{
 			NewLine = "\n",
 			AutoFlush = true,
 		};
-		return new IndentedTextWriter(streamWriter, "\t")
+		return Create(streamWriter);
+	}
+
+	/// <summary>
+	/// Make a new <see cref="IndentedTextWriter"/>.
+	/// </summary>
+	/// <param name="writer">The <see cref="TextWriter"/> to use for output.</param>
+	/// <returns>An <see cref="IndentedTextWriter"/> that outputs to the specified <paramref name="writer"/>.</returns>
+	public static IndentedTextWriter Create(TextWriter writer)
+	{
+		return new IndentedTextWriter(writer, "\t")
 		{
 			NewLine = "\n",
 		};

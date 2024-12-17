@@ -1,12 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
+		<TargetFrameworks>netstandard2.0;net9.0</TargetFrameworks>
 		<LangVersion>Latest</LangVersion>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 
-		<IsTrimmable>true</IsTrimmable>
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 		<Authors>ds5678</Authors>
 		<Company>AssetRipper</Company>
@@ -18,12 +17,20 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<RepositoryType>git</RepositoryType>
 		<PackageProjectUrl>https://github.com/AssetRipper/AssetRipper.Text.SourceGeneration</PackageProjectUrl>
-		<Copyright>Copyright (c) 2023 ds5678</Copyright>
+		<Copyright>Copyright (c) ds5678</Copyright>
 		<Description>Extension library for generating C# source code.</Description>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Deterministic>true</Deterministic>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<NoWarn>1591</NoWarn>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net6.0'))">
+		<IsTrimmable>true</IsTrimmable>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net8.0'))">
+		<IsAotCompatible>true</IsAotCompatible>
 	</PropertyGroup>
 
 	<ItemGroup>
