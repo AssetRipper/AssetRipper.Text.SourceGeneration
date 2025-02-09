@@ -23,6 +23,7 @@ public static class IndentedTextWriterExtensions
 		writer.WriteLine($"/// <returns>{description}</returns>");
 	}
 	public static void WriteInheritDocumentation(this IndentedTextWriter writer) => writer.WriteLine("/// <inheritdoc/>");
+	public static void WriteInheritDocumentation(this IndentedTextWriter writer, string cref) => writer.WriteLine($"/// <inheritdoc cref=\"{cref}\"/>");
 	private static void WriteXmlDocumentation(this IndentedTextWriter writer, string tag, string content)
 	{
 		writer.WriteLine($"/// <{tag}>");
