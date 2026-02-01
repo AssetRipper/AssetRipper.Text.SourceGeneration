@@ -20,6 +20,7 @@
 		<Copyright>Copyright (c) ds5678</Copyright>
 		<Description>Extension library for generating C# source code.</Description>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<Deterministic>true</Deterministic>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<NoWarn>1591</NoWarn>
@@ -42,6 +43,10 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="../README.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
 
 </Project>
